@@ -1,5 +1,5 @@
 # Hotel Overstay Calculator
-This API will calclate overstay fees for customers of a hotel. The solution primarily contains 5 projects and 1 test project.
+This API will calculate overstay fees for customers of a hotel. The solution primarily contains 5 projects and 1 test project.
 
 1. Domain
 2. Core
