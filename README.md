@@ -1,5 +1,5 @@
 # Hotel Overstay Calculator
-This solution primarily contains 4 projects and 1 Test project.
+This API will calclate overstay fees for customers of a hotel. The solution primarily contains 5 projects and 1 test project.
 
 1. Domain
 2. Core
@@ -39,6 +39,7 @@ A worker background microservice continually calculating the overstay fee for cu
     <code>cd Api</code>
 
     <code>dotnet run</code>
+3. Use postman or your browser to hit the Bills endpoint at https://localhost:5001/bills?customerid=12323
 
 # Tests
 To run the unit tests

@@ -25,7 +25,7 @@ namespace Api.Controllers
         [HttpGet]
         public async Task<ActionResult> Get(long customerId)
         {
-            var result = await _checkout.GetOverstayRate(customerId, RoomType.Regular);
+            var result = await _checkout.GetOverstayFee(customerId);
             return Ok(result);
         }
 

@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using Hotel.Domain.Enums;
 using Hotel.Core.Repos;
 using Hotel.Core.Business;
+using System.Collections.Generic;
 
 namespace Hotel.Core.Managers
 {
@@ -38,12 +39,34 @@ namespace Hotel.Core.Managers
             return isWeekend ? rate.WeekendRateMarkup : rate.WeekdayRateMarkup;
         }
 
-        public async Task<decimal> GetOverstayFee(decimal overstayRate, decimal hourlyRate)
+        public async Task<IEnumerable<BillModel>> GetOverstayFee(long customerId)
         {
-            return await Task.Run(() =>
+            var reservations = await _repo.GetReservations();
+            var rates = await _repo.GetRates();
+            var reserveRates = (from res in reservations
+                                where res.CustomerId == customerId
+                                join rat in rates on res.RoomType equals rat.RoomType
+                                select new { Reservation = res, Rate = rat }).ToList();
+
+            var billModels = reserveRates.Select(reserveRate =>
             {
-                return 2.5m;
-            });
+                // Determine if ExpectedCheckout date is a weekend
+                var reservation = reserveRate.Reservation;
+                var rate = reserveRate.Rate;
+                var isWeekend = false;
+                if (reservation.ExpectedCheckout.DayOfWeek == DayOfWeek.Saturday || reservation.ExpectedCheckout.DayOfWeek == DayOfWeek.Sunday) isWeekend = true;
+                var overstay = (DateTimeOffset.Now - reservation.ExpectedCheckout).TotalHours;
+                // Over stay is due at the begining of the hour
+                overstay = Math.Ceiling(overstay);
+                var overstayRate = isWeekend ? rate.WeekendRateMarkup : rate.WeekdayRateMarkup;
+
+                return new BillModel(reservation, overstayRate, overstay);
+
+            }).ToList();
+
+            return billModels;
+
+
         }
     }
 }

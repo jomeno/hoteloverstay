@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Hotel.Core.Repos;
 using Hotel.Infrastructure.Repos;
+using Hotel.Core.Managers;
 
 namespace Checkout
 {
@@ -21,8 +22,8 @@ namespace Checkout
                 .ConfigureServices((hostContext, services) =>
                 {
                     // add repositaries
-                    services.AddScoped<IReservation, Reservation>();
-
+                    services.AddSingleton<IReservation, Reservation>();
+                    services.AddSingleton<ICheckoutManager, CheckoutManager>();
 
                     // add hosted services
                     services.AddHostedService<Worker>();
