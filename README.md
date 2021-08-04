@@ -1,5 +1,5 @@
 # Hotel Overstay Calculator
-This solution primarily contains 4 projects.
+This solution primarily contains 4 projects and 1 Test project.
 
 1. Domain
 2. Core
@@ -8,10 +8,10 @@ This solution primarily contains 4 projects.
 4. Checkout
 
 # Domain
-A class library project containing enterprise-wide logic and types.
+A class library project containing enterprise wide logic and types.
 
 # Core
-A class library project containing application-specific or business logic and types.
+A class library project containing application specific or business logic and types.
 
 # Infrastructure
 A class library project containing data access logic and types.
@@ -23,11 +23,10 @@ The hotel overstay web api microservice.
 A worker background microservice continually calculating the overstay fee for customers.
 
 # Getting Started
-1. <code>cd</code> into the solution root folder and run the following commands:
+1. <code>cd</code> into the solution root folder and run the following command which automatically restores reuired nuget packages.
 
     <code>dotnet build</code>
-
-    Automatically restores reuired nuget packages.
+    
 
 2. Open a cli to start the Checkout worker background service:
 
