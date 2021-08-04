@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Hotel.Core.Repos;
+using Hotel.Infrastructure.Repos;
 
 namespace Checkout
 {
@@ -18,6 +20,11 @@ namespace Checkout
             Host.CreateDefaultBuilder(args)
                 .ConfigureServices((hostContext, services) =>
                 {
+                    // add repositaries
+                    services.AddScoped<IReservation, Reservation>();
+
+
+                    // add hosted services
                     services.AddHostedService<Worker>();
                 });
     }

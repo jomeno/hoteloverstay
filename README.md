@@ -23,12 +23,12 @@ The hotel overstay web api microservice.
 A worker background microservice continually calculating the overstay fee for customers.
 
 # Getting Started
-1. <code>cd</code> into the solution root folder and run the following command which automatically restores reuired nuget packages.
+1. <code>cd</code> into the solution root folder and run the following command which automatically restores required nuget packages.
 
     <code>dotnet build</code>
     
 
-2. Open a cli to start the Checkout worker background service:
+2. Open a cli to start the Checkout worker background microservice:
 
     <code>cd Checkout</code>
 
@@ -41,8 +41,8 @@ A worker background microservice continually calculating the overstay fee for cu
     <code>dotnet run</code>
 
 # Tests
-To run unit tests
-<code>cd</code> into the Tests project and run the following command
+To run the unit tests
+<code>cd</code> into the Tests project and run the following command:
 
 <code>dotnet test</code>
 
